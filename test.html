@@ -5,6 +5,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MOOCbook - Supervised Learning</title>
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-98199063-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" href="MOOC Vid CSS/video-canvas.css" />
@@ -394,7 +404,11 @@ var myPlayer = videojs("video");
 var videoTitle = "Supervised Learning";
 </script>
 <script src="js/videojs.ga.js"></script>
-
+<script>
+videojs('video', {}, function() {
+  this.ga({'eventsToTrack': ['loaded', 'start', 'end', 'play', 'pause', 'fullscreen', 'resize', 'error']}); // "load the plugin, by defaults tracks everything!!"
+});
+</script>
 </body>
 </html>                                   
 
