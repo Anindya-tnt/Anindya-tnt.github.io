@@ -397,6 +397,11 @@ var videoTitle = "Unsupervised Learning";
 </script>
 <script src="js/videojs.ga.js"></script>
 
+<script>
+videojs('video', {}, function() {
+  this.ga(); // "load the plugin, by defaults tracks everything!!"
+});
+
 </body>
 </html>                                   
 
