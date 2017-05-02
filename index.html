@@ -405,7 +405,7 @@ var delNote = function(){
 
 <script>
 videojs('video', {}, function() {
-  this.ga(); // "load the plugin, by defaults tracks everything!!"
+  this.ga({'eventsToTrack': ['loaded', 'start', 'end', 'play', 'pause', 'fullscreen', 'resize', 'error']}); // "load the plugin, by defaults tracks everything!!"
 });
 
 </body>
