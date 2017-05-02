@@ -26,7 +26,7 @@ window.onload = function() {
 			// Calculate the ratio of the video2's width to height
 			ratio = video2.videoWidth / video2.videoHeight;
 			// Define the required width as 100 pixels smaller than the actual video2's width
-			w = video2.videoWidth - 600;
+			w = 360;
 			// Calculate the height based on the video2's width and the ratio
 			h = parseInt(w / ratio, 10);
 			// Set the canvas width and height to the values just calculated
@@ -71,6 +71,7 @@ window.onload = function() {
 			// And increment that number by 1
 		   
 			var canvas = document.getElementById("canvas1");
+			var textDesc = document.getElementById("figDesc");
 			var img    = canvas.toDataURL("image/jpeg");	
 			// Clone it and assign the new ID (i.e: from num 4 to ID "klon4")
 			if (num == undefined){
@@ -80,11 +81,13 @@ window.onload = function() {
 			else{
 				num += 1;
 			}
-			$('.panel-body').append('<p><img style="border: 1px solid black;" src="'+img+'" alt="image"/></p><br/>');
+			$('.panel-body').append('<p><img style="border: 1px solid black;" src="'+img+'" alt="image"/></p>');
+			$('.panel-body').append('<p>Fig. '+num+': '+textDesc.value+'</p><br/>');
+			textDesc.value = "";
 			//console.log($div);
 			console.log(num);
 			// console.log($canv);
-			console.log("click");
+			console.log(textDesc.value);
   			//$('#Note').html($canv);
   			// 	img.appendTo('#Note');
   			//document.getElementById("canvas"+num).getContext('2d').drawImage(canvas, 0, 0);
