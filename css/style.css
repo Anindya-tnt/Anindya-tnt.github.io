@@ -35,19 +35,7 @@
 	opacity: .9;
 }
 
-button {
-	background: rgba(0,0,0,.5);
-	border: 0;
-	color: #EEE;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-o-border-radius: 3px;
-	border-radius: 3px;
-}
 
-button:hover {
-	cursor: pointer;
-}
 
 #seek-bar {
 	width: 360px;
@@ -58,22 +46,35 @@ button:hover {
 }
 
 #video-container #video-controls button{
-	margin-top: -10px;	
+	/*margin-top: -10px;	*/
 }
 
 .transcript-line.is-active{
-	    background-color: #286090;
+		background-color: #286090;
 	    text-decoration-color: white;
 }
 
-.transcript-line.is-active {
-    background-color: orange;
-}
-.transcript-text {
-
+.transcript-line .transcript-timestamp,.transcript-line .transcript-text{
+	color: black;
+    font-size: 16px;
 }
 
+.transcript-line.is-active .transcript-timestamp,.transcript-line.is-active .transcript-text{
+    /*background-color: orange;*/
+    color: white;
+    font-size: 16px;
+}
 
+
+
+.divider {
+  height: 1px;
+  width:100%;
+  display:inline; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: visible;
+  background-color: #ff7e18;
+}
 
 .body{
 	padding-top: 0px;
@@ -81,4 +82,25 @@ button:hover {
 
 #transcript{
 	border: 3px solid black;
+
+}
+
+.container{
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.jumbotron.specialjum{
+	    background-color: #f5e8d4;
+	    margin-bottom: 0px;
+	    padding-bottom: 0px;
+	}
+
+ul.nav.navbar-nav.navbar-right{
+	margin-right: 100px;
+}
+
+div#NoteStart.jumbotron{
+	background-color: #f5e8d4;
 }
