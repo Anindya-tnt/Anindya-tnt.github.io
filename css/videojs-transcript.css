@@ -21,6 +21,7 @@
   display: inline-block;
   color: #333;
   width: 50px;
+  padding-right: 50px;
 }
 
 .transcript-text {
