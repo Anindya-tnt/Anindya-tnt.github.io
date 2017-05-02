@@ -62,7 +62,7 @@
   <div class="col-xs-4" id="vid">
       <h4>Lecture Video</h4>
   <div class="video-container">
-    <video id="video" class="video-js" width="400" height="300" controls>
+    <video id="video" class="video-js" width="400" height="300" controls data-setup='{"ga": {"eventsToTrack": ['loaded', 'start', 'end', 'play', 'pause', 'fullscreen', 'resize', 'error']}}'>
       <source src="./media/Introduction-UnsupervisedLearning.mp4" type="video/mp4" width="300" height="360">
       <track id='entrack' kind="captions" src="captions/captions.vtt" srclang="en" label="English subtitles" default>
 
