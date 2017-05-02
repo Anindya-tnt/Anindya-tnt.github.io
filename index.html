@@ -4,26 +4,29 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-98199063-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<title>MOOCbook - Enable Notes for MOOCs</title>
+<title>MOOCbook - Unsupervised Learning</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" href="MOOC Vid CSS/video-canvas.css" />
 <link href="css/video-js.css" rel="stylesheet">
 <link href="css/videojs-transcript.css" title="Example 1" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css" />
-<script src="js/jquery-1.11.1.min.js"></script>
-<style type="text/css">
-    
+
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/templatemo-style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
+
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
+
+<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
+<script src="js/script.js"></script> 
+<style type="text/css">   
     .video-js {
       margin: 40px auto;
     }
@@ -31,25 +34,49 @@
 
 <script src="js/video.js"></script>
 <script src="js/videojs-transcript.js"></script>
-<script src="js/script.js"></script>
 </head>
-<body>
-	<div class="container">
-	<div class="jumbotron">
-	<div class="row"><h2>Introduction to Unsupervised Learning</h2><div class="col-xs-4">
-			
-	<div class="video-container">
-		<video id="video" class="video-js" width="500" height="360" controls>
-			<source src="./media/Introduction-UnsupervisedLearning.mp4" type="video/mp4" width="500" height="360">
-			<track kind="captions" src="captions/captions.vtt" srclang="en" label="English" default>
-		</video>
-		</div>
-		</div>
-		<div class="col-xs-2">
-			
-		</div>
-		<div class="col-xs-6"><div id="transcript" style="margin-top: 80px; width:500px; border:4px solid black"></div>
-		<script>
+<body style="background-color: #f5e8d4;">
+  <div class="preloader">
+     <div class="spinner">
+          <span class="spinner-rotate"></span>
+     </div>
+  </div>
+
+  <div class="jumbotron specialjum">
+    <div class="over container body-content">
+    <div class="row">
+      <div class="col-xs-12 br1"><br/></div>
+    </div>
+  <div class="row">
+  <div class="col-xs-4" id="vid">
+      <h4>Lecture Video</h4>
+  <div class="video-container">
+    <video id="video" class="video-js" width="400" height="300" controls>
+      <source src="./media/Introduction-UnsupervisedLearning.mp4" type="video/mp4" width="300" height="360">
+      <track id='entrack' kind="captions" src="captions/captions.vtt" srclang="en" label="English subtitles" default>
+
+    </video>
+    </div>
+    </div>
+    <div class="col-xs-4"><div id="transcript" align="left" style="position: relative; margin-top:80px; padding-left: 0px; margin-left: 80px; width:280px;height:300px; border:2px solid black"></div></div>
+    <div class="col-xs-4" style="margin-top:50px">
+      <h4>Preview Snapshot</h4>
+      
+      
+      <canvas id="canvas1" allign="right" style="position: relative;"></canvas>
+      <div class="NoteButtons">
+       <!-- Screeshot Controls -->
+            <input id="figDesc" type="text" placeholder="Add optional figure description" style="width:300px; padding-left: 7px"></input>
+            <button class="btn btn-primary" type="button" id="snap">Select KeyFrame</button>
+          <button class="btn btn-success" type="button" id="saveImage">Save Image</button>
+          <button class="btn btn-info" type="button" onclick="save()" id="cloneImage">Add To Note</button>
+          
+          
+      </div>
+
+    </div>
+    
+    <script>
       var video = videojs('video').ready(function(){
 
           // fire up the plugin
@@ -59,53 +86,76 @@
           var transcriptContainer = document.querySelector('#transcript');
           transcriptContainer.appendChild(transcript.el());
       });
-  </script>
-		</div>
+    </script>
+    </div>
 
-	
-	
-	
-	
-	<div class="col-xs-12">
-			<h2>Snapshot</h2>
-			<canvas id="canvas1" width="100" height="100" allign="right"></canvas>
-			<div class="NoteButtons">
-			 <!-- Video Controls -->
-				    
-				    <button type="button" id="snap">Take screenshot</button>
-					<button type="button" id="saveImage">Save Image</button>
-					<button type="button" id="cloneImage">Add to Note</button>
-					<button type="button" id="saveNote">Save Note</button>
-		</div>
-		</div>
-	</div>
-	</div>
-	</div>
-	<div class="container">
-	<div class="jumbotron">
-		<h2>Note</h2>			
-			<div id="page-content" class="panel panel-default" style="overflow-y: scroll; width:1056px; height:400px;">
-                    <div class="panel-body">
-                        <p>So, you've been to cocktail parties before, right? Well, you can imagine there's a party, room full of people, all sitting around, all talking at the same time and there are all these overlapping voices because everyone is talking at the same time, and it is almost hard to hear the person in front of you. So maybe at a cocktail party with two people, two people talking at the same time, and it's a somewhat small cocktail party. And we're going to put two microphones in the room so there are microphones, and because these microphones are at two different distances from the speakers, each microphone records a different combination of these two speaker voices. Maybe speaker one is a little louder in microphone one and maybe speaker two is a little bit louder on microphone 2 because the 2 microphones are at different positions relative to the 2 speakers, but each microphone would cause an overlapping combination of both speakers' voices. So here's an actual recording of two speakers recorded by a researcher. Let me play for you the first, what the first microphone sounds like. One (uno), two (dos), three (tres), four (cuatro), five (cinco), six (seis), seven (siete), eight (ocho), nine (nueve), ten (y diez). All right, maybe not the most interesting cocktail party, there's two people counting from one to ten in two languages but you know. What you just heard was the first microphone recording, here's the second recording. Uno (one), dos (two), tres (three), cuatro (four), cinco (five), seis (six), siete (seven), ocho (eight), nueve (nine) y diez (ten). So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm - find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings.</p>
-                        <img src="test.png">
-                        <p>So you might look at an Unsupervised Learning algorithm like this and ask how complicated this is to implement this, right? It seems like in order to, you know, build this application, it seems like to do this audio processing you need to write a ton of code or maybe link into like a bunch of synthesizer Java libraries that process audio, seems like a really complicated program, to do this audio, separating out audio and so on. It turns out the algorithm, to do what you just heard, that can be done with one line of code - shown right here.</p>
-                        <br/>
+  
+  
+  
+  <div class="navbar navbar-fixed-top custom-navbar" role="navigation">
+     <div class="container">
+
+          <!-- navbar header -->
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
+               <a href="#" class="navbar-brand" style="margin-left:15px">MOOCbook</a>
+          </div>
+
+          <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left" style="margin-left: 60px">
+                    <li><a href="test.php">Unsupervised Learning</a></li>
+                </ul>
+               <ul class="nav navbar-nav navbar-right" style="margin-right: 60px">
+                    
+                    <li><a href=".br1" class="smoothScroll">Video</a></li>
+                    <li><a href="#NoteStart" class="smoothScroll">Note</a></li>
+
+                    <li></li>
+               </ul>
+          </div>
+
+     </div>
+</div>
+  <div class="col-xs-12 divider">
+      <div id="activeCue"></div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  
+  <div class="container" id="NoteStart" style="background-color: transparent;">
+  <div class="jumbotron" style="background-color: transparent;">
+      <button id="edit" class="btn btn-primary" onclick="edit()" type="button">Edit</button>
+      <button id="save" class="btn btn-success" onclick="save()" type="button">Save</button>
+      <button id="save" class="btn btn-danger" onclick="delNote()" type="button">Delete</button>
+      <!-- <button class="btn btn-primary" onclick="getactiveCue()" type="button">Show Current Line</button> -->
+      <button class="btn btn-primary" onclick="addTextToNote()" type="button">Add Text to Note</button>
+     
+      <div id="page-content" class="panel panel-primary" >
+                    <div class="panel-heading" style="position:relative;">Note</div>
+                    <div class="click2edit">
+                    <div class="panel-body" id="deltext" style="overflow-y: scroll; width:auto; height:400px;">
+                      
                     </div>
-                
-			</div>
-	</div> <!-- With Scroller -->
-	</div>
+                    </div>
+      </div>
+      <button class="btn btn-success" type="button" id="saveNote">Download Note</button>
+  </div> <!-- With Scroller -->
+  </div>
 
-	</body>
-
-
-<script src="js/script.js"></script>
-
+  </body>
+   <script src="js/script.js"></script>
+ 
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link href="./jQuery Word Export_files/bootstrap.min.css" rel="stylesheet">
     <link href="./jQuery Word Export_files/font-awesome.css" rel="stylesheet">
-    <script src="jQuery Word Export_files/jquery-1.11.1.min.js"></script>
+    <!-- <script src="jQuery Word Export_files/jquery-1.11.1.min.js"></script> -->
     <!-- FileSaver.js (necessary for saving the word document!) -->
     <script src="jQuery Word Export_files/FileSaver.js"></script>
     <!-- jQuery-Word-Export plugin -->
@@ -120,16 +170,32 @@
     //     });
     // });
     </script>
-    <a href="javascript:demoFromHTML()" class="button">Run Code</a>
-	 
-	
-	 
-	</div>
+    
+   
+  
+   
+  </div>
+
+  <footer>
+  <div class="container">
+    <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <div class="wow fadeInUp footer-copyright" data-wow-delay="1.8s">
+                         <p>Copyright &copy; 2017 MOOCbook
+                    </p>
+                    </div>
+               </div>
+      
+    </div>
+  </div>
+  </footer>
+
     <script>
-		if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
+    if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
     (function($) {
         $.fn.wordExport = function(fileName) {
-            fileName = typeof fileName !== 'undefined' ? fileName : "jQuery-Word-Export";
+            fileName = typeof fileName !== 'undefined' ? fileName : "MOOCbook";
             var static = {
                 mhtml: {
                     top: "Mime-Version: 1.0\nContent-Base: " + location.href + "\nContent-Type: Multipart/related; boundary=\"NEXT.ITEM-BOUNDARY\";type=\"text/html\"\n\n--NEXT.ITEM-BOUNDARY\nContent-Type: text/html; charset=\"utf-8\"\nContent-Location: " + location.href + "\n\n<!DOCTYPE html>\n<html>\n_html_</html>",
@@ -212,11 +278,131 @@
 }
 
 jQuery(document).ready(function($) {
+        $('.summernote').summernote({
+        airMode: true
+        });
+
         $("#saveNote").click(function(event) {
+            save();
             console.log("click");
             $("#page-content").wordExport();
         });
+
+        function getactiveCue(){
+
+        var video = document.querySelector('video');
+        var span = document.getElementById('activeCue');
+
+        if (!video.textTracks) return;
+
+        var track = video.textTracks[0];
+        //track.mode = 'hidden';
+
+        track.oncuechange = function(e) {
+
+            var cue = this.activeCues[0];
+            if (cue) {
+                span.innerHTML = '';
+                span.appendChild(cue.getCueAsHTML());
+            }
+
+        }
+      }
+
+      getactiveCue();
     });
-	</script>
+  </script>
+  <script type="text/javascript"></script>
+  <script src="js/jquery.parallax.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+
+<script type="text/javascript">
+  var edit = function() {
+    console.log('sssss');
+  $('.click2edit').summernote({focus: true});
+};
+
+var save = function() {
+  console.log('aaaaaa');
+  var makrup = $('.click2edit').summernote('code');
+  $('.click2edit').summernote('destroy');
+};
+
+var delNote = function(){
+  console.log('delete');
+  save();
+  var noteEdit = document.getElementById('deltext');
+  if(!noteEdit.innerHTML == ""){
+  var retVal = confirm("Are you sure?");
+               if( retVal == true ){
+
+                  noteEdit.innerHTML = "";
+                  return true;
+               }
+               else{
+                  return false;
+               }
+        }
+   }
+
+   var myText = "";
+   var currLine = "";
+   
+
+      
+      
+      function addTextToNote(){
+        var myTrack = document.getElementById("entrack").track; // get text track from track element          
+        var myCues = myTrack.cues;  // get list of cues  
+        myText = "";                   
+        for (var i = 0; i < myCues.length; i++) {
+            //   document.getElementById("display").innerHTML += (myCues[i].getCueAsHTML().textContent + "<br/>");  //append track label
+            myText += (myCues[i].text + " ");  //append track label
+        }
+        
+        myText = myText.replace(/&#39;/g, "'");
+        console.log(myText);
+        var text = myText;
+        var texts = text.split(". ");
+        // for (thing in texts){
+        //     thing = thing+".";
+        // }
+        console.log(texts.length);
+        //console.log(text);
+        var str = document.getElementById("activeCue").innerHTML;
+        var re = str;
+        console.log("re="+re);
+        // var found = text.search(re);
+        //console.log("found="+found);
+        var i = 0;
+        while(i < texts.length){
+          texts[i] = texts[i]+".";
+          var found = texts[i].search(re);
+          if(found != -1){
+            console.log(texts[i]);
+            $('.panel-body').append('<p>'+texts[i]+'</p>');
+          }
+          i++;
+        }
+        //console.log("text="+text[i]+text[i+1]+text[i+2]+text[i+3]+text[i+4]+text[i+5]);
+      }
+</script>
+<script>
+//reference the player
+var myPlayer = videojs("video");
+//provide a name for the Events
+var videoTitle = "Unsupervised Learning";
+</script>
+<script src="js/videojs.ga.js"></script>
+
 </body>
-</html>                                		
+</html>                                   
+
+ 
+
+  
+  
+</body>
+</html>
