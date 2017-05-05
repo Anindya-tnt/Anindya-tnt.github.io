@@ -87,7 +87,10 @@
     </div>
     
    <script>
-      var myPlayer = videojs('video');
+      var myPlayer = videojs('video', {}, function() {
+  this.ga({'eventsToTrack': ['loaded', 'percentsPlayed', 'start', 'end', 'seek', 'play', 'pause', 'resize', 'volumeChange', 'error', 'fullscreen']}); // "load the plugin, by defaults tracks everything!!"
+});
+
       //to track number of times video is paused,played
       var numPaused =0,numPlayed = 0,numEnded = 0,numSeeked = 0, numScrubbed = 0;
           myPlayer.ready(function(){
@@ -157,7 +160,7 @@
 
           <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-left" style="margin-left: 60px">
-                    <li><a href="test.html">Supervised Learning</a></li>
+                    <li><a href="test.php">Supervised Learning</a></li>
                 </ul>
                <ul class="nav navbar-nav navbar-right" style="margin-right: 60px">
                     
@@ -404,6 +407,7 @@ var delNote = function(){
       
       
       function addTextToNote(){
+        save();
         var myTrack = document.getElementById("entrack").track; // get text track from track element          
         var myCues = myTrack.cues;  // get list of cues  
         myText = "";                   
@@ -443,9 +447,7 @@ var delNote = function(){
 <script src="js/videojs.ga.js"></script>
 
 <script>
-videojs('video', {}, function() {
-  this.ga({'eventsToTrack': ['loaded', 'start', 'end', 'play', 'pause', 'fullscreen', 'resize', 'error']}); // "load the plugin, by defaults tracks everything!!"
-});
+
 </script>
 </body>
 </html>                                   
