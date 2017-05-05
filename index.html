@@ -79,7 +79,7 @@
             <input id="figDesc" type="text" placeholder="Add optional figure description" style="width:300px; padding-left: 7px"></input>
             <button class="btn btn-primary" type="button" id="snap">Select KeyFrame</button>
           <button class="btn btn-success" type="button" id="saveImage">Save Image</button>
-          <button class="btn btn-info" type="button" onclick="save()" id="cloneImage">Add To Note</button>
+          <button class="btn btn-info" type="button" onclick="ga('send', 'event', { eventCategory: 'Unsupervised Learning Video', eventAction: 'Image Added To Note', eventLabel: 'Image Added To Note'}); save();" id="cloneImage">Add To Note</button>
           
           
       </div>
@@ -88,7 +88,8 @@
     
    <script>
       var myPlayer = videojs('video', {}, function() {
-  this.ga({'eventsToTrack': ['loaded', 'percentsPlayed', 'start', 'end', 'seek', 'play', 'pause', 'resize', 'volumeChange', 'error', 'fullscreen']}); // "load the plugin, by defaults tracks everything!!"
+  this.ga({'eventsToTrack': ['loaded', 'percentsPlayed', 'start', 'end', 'seek', 'play', 'pause', 'resize', 'volumeChange', 'error', 'fullscreen'],
+            'eventCategory' : "Unsupervised Learning Video"}); // "load the plugin, by defaults tracks everything!!"
 });
 
       //to track number of times video is paused,played
@@ -187,7 +188,7 @@
       <button id="save" class="btn btn-success" onclick="save()" type="button">Save</button>
       <button id="save" class="btn btn-danger" onclick="delNote()" type="button">Delete</button>
       <!-- <button class="btn btn-primary" onclick="getactiveCue()" type="button">Show Current Line</button> -->
-      <button class="btn btn-primary" onclick="addTextToNote()" type="button">Add Text to Note</button>
+      <button class="btn btn-primary" onclick="ga('send', 'event', { eventCategory: 'Unsupervised Learning Video', eventAction: 'Text Added To Note', eventLabel: 'Text Added To Note'}); addTextToNote();" type="button">Add Text to Note</button>
      
       <div id="page-content" class="panel panel-primary" >
                     <div class="panel-heading" style="position:relative;">Note</div>
@@ -197,7 +198,7 @@
                     </div>
                     </div>
       </div>
-      <button class="btn btn-success" type="button" id="saveNote">Download Note</button>
+      <button class="btn btn-success" type="button" onlcikc="ga('send', 'event', { eventCategory: 'Unsupervised Learning Video', eventAction: 'Download Note clicked', eventLabel: 'Download Note clicked'});" id="saveNote">Download Note</button>
   </div> <!-- With Scroller -->
   </div>
 
